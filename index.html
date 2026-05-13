@@ -3,129 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎬 CINEMA GRAMMAR: GERUND MASTERCLASS</title>
+    <title>🎬 CINEMA GRAMMAR: 40 LEGENDS EDITION</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <style>
         :root { --neon: #00ff88; --bg: #02040a; --card: #0d1117; --accent: #21262d; }
-        
         * { box-sizing: border-box; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        
         body { font-family: 'Inter', sans-serif; background: var(--bg); color: white; margin: 0; overflow: hidden; height: 100vh; }
-
-        /* GİRİŞ EKRANI */
-        #hero { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            display: flex; flex-direction: column; align-items: center; justify-content: center; 
-            background: #000; z-index: 1000; 
-        }
-        
-        .glitch {
-            font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; letter-spacing: -2px;
-            position: relative; text-align: center;
-        }
+        #hero { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #000; z-index: 1000; }
+        .glitch { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; text-align: center; }
         .glitch span { color: var(--neon); text-shadow: 0 0 30px var(--neon); }
-
-        /* ANA PANEL */
         .app-container { display: none; height: 100vh; grid-template-columns: 380px 1fr; }
-
-        /* YAN MENÜ */
-        .sidebar { 
-            background: var(--card); border-right: 1px solid var(--accent); 
-            padding: 20px; overflow-y: auto; scrollbar-width: none;
-        }
-        
-        .verb-card { 
-            background: #161b22; border: 1px solid var(--accent); padding: 20px; 
-            border-radius: 12px; cursor: pointer; margin-bottom: 15px;
-            animation: fadeInRight 0.5s ease forwards; opacity: 0;
-        }
-        
-        .verb-card:hover { 
-            border-color: var(--neon); transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.1);
-        }
-
-        .verb-card h3 { margin: 0; color: var(--neon); }
-
-        /* SAĞ PANEL */
-        .display { 
-            display: flex; flex-direction: column; align-items: center; justify-content: center; 
-            padding: 40px; text-align: center;
-            background: radial-gradient(circle at center, #0d1117 0%, #02040a 100%);
-        }
-
-        .instruction-card {
-            padding: 60px; border: 1px solid var(--accent); border-radius: 30px;
-            background: rgba(255,255,255,0.01);
-        }
-
-        .magic-btn { 
-            margin-top: 20px; padding: 18px 45px; background: var(--neon); 
-            color: black; border: none; border-radius: 50px; font-weight: 900; 
-            font-size: 1.1rem; cursor: pointer;
-        }
-
-        .magic-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
-        }
-
-        /* IMZA TASARIMI */
-        .signature {
-            position: fixed; bottom: 20px; right: 30px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.85rem; letter-spacing: 2px;
-            color: rgba(255, 255, 255, 0.4);
-            z-index: 1001; pointer-events: none;
-            text-transform: uppercase;
-        }
+        .sidebar { background: var(--card); border-right: 1px solid var(--accent); padding: 20px; overflow-y: auto; scrollbar-width: none; }
+        .verb-card { background: #161b22; border: 1px solid var(--accent); padding: 18px; border-radius: 12px; cursor: pointer; margin-bottom: 12px; animation: fadeInRight 0.5s ease forwards; opacity: 0; }
+        .verb-card:hover { border-color: var(--neon); transform: scale(1.03); box-shadow: 0 0 20px rgba(0, 255, 136, 0.1); }
+        .verb-card h3 { margin: 0; color: var(--neon); font-size: 1.1rem; }
+        .display { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; text-align: center; background: radial-gradient(circle at center, #0d1117 0%, #02040a 100%); }
+        .instruction-card { padding: 50px; border: 1px solid var(--accent); border-radius: 30px; background: rgba(255,255,255,0.01); backdrop-filter: blur(5px); }
+        .actor-tag { background: rgba(0, 255, 136, 0.1); color: var(--neon); padding: 8px 20px; border-radius: 50px; font-size: 0.9rem; margin-top: 15px; display: inline-block; border: 1px solid var(--neon); font-weight: bold; }
+        .magic-btn { margin-top: 25px; padding: 18px 45px; background: var(--neon); color: black; border: none; border-radius: 50px; font-weight: 900; font-size: 1.1rem; cursor: pointer; }
+        .magic-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3); }
+        .signature { position: fixed; bottom: 20px; right: 30px; font-family: 'Courier New', Courier, monospace; font-size: 0.85rem; color: rgba(255, 255, 255, 0.4); z-index: 1001; text-transform: uppercase; }
         .signature span { color: var(--neon); font-weight: bold; }
-
-        .loader {
-            width: 150px; height: 2px; background: #161b22; margin-top: 20px;
-            position: relative; overflow: hidden;
-        }
-        .loader::after {
-            content: ""; position: absolute; left: -100%; width: 100%; height: 100%;
-            background: var(--neon); animation: loading 1.5s infinite;
-        }
+        .loader { width: 150px; height: 2px; background: #161b22; margin-top: 20px; position: relative; overflow: hidden; }
+        .loader::after { content: ""; position: absolute; left: -100%; width: 100%; height: 100%; background: var(--neon); animation: loading 1.5s infinite; }
         @keyframes loading { 100% { left: 100%; } }
-
     </style>
 </head>
 <body>
 
-    <!-- COOL IMZA -->
     <div class="signature">Made by <span>Musab Gülter</span></div>
 
     <div id="hero" class="animate__animated">
         <h1 class="glitch">CINEMA<span>GRAMMAR</span></h1>
         <div class="loader"></div>
-        <p style="color: #8b949e; letter-spacing: 3px; margin-top: 20px; font-size: 0.9rem;">GERUND MASTERCLASS PROJECT</p>
+        <p style="color: #8b949e; letter-spacing: 3px; margin-top: 20px; font-size: 0.9rem;">40 LEGENDS GERUND PROJECT</p>
         <button class="magic-btn" onclick="startApp()">DENEYİMİ BAŞLAT ▶</button>
     </div>
 
     <div class="app-container" id="app">
         <div class="sidebar" id="verbList">
-            <h2 style="font-size: 0.7rem; color: var(--neon); letter-spacing: 3px; margin-bottom: 30px; opacity: 0.6;">GERUND DATABASE</h2>
+            <h2 style="font-size: 0.7rem; color: var(--neon); letter-spacing: 3px; margin-bottom: 30px; opacity: 0.6;">40 VERBS / 40 ACTORS</h2>
         </div>
 
         <div class="display">
             <div class="instruction-card animate__animated animate__fadeIn" id="mainCard">
-                <h2 id="focus-verb" style="color: var(--neon); font-size: 3.5rem; margin: 0;">HOŞ GELDİNİZ</h2>
-                <p id="focus-tr" style="font-size: 1.3rem; color: #8b949e; margin-bottom: 30px;">Lütfen listeden bir fiil seçin.</p>
-                <div id="btn-container" style="display:none;" class="animate__animated animate__fadeInUp">
-                    <button class="magic-btn" id="go-btn">SAHNELERİ İZLE 🎬</button>
+                <h2 id="focus-verb" style="color: var(--neon); font-size: 3.5rem; margin: 0;">FİLM BAŞLIYOR</h2>
+                <p id="focus-tr" style="font-size: 1.3rem; color: #8b949e; margin-bottom: 10px;">Bir fiil seç ve efsaneyi gör.</p>
+                <div id="action-area" style="display:none;">
+                    <div id="assigned-actor" class="actor-tag"></div>
+                    <br>
+                    <button class="magic-btn" id="go-btn">SAHNEYİ İZLE 🎬</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        const verbs = [['AVOID', 'Kaçınmak'], ['ENJOY', 'Keyif Almak'], ['KEEP', 'Devam Etmek'], ['SUGGEST', 'Önermek'], ['STOP', 'Bırakmak'], ['FINISH', 'Bitirmek'], ['IMAGINE', 'Hayal Etmek'], ['MIND', 'İtiraz Etmek'], ['MISS', 'Özlemek'], ['ADMIT', 'İtiraf Etmek'], ['DENY', 'İnkar Etmek'], ['PRACTICE', 'Pratik Yapmak'], ['WORTH', 'Değmek'], ['GIVE UP', 'Vazgeçmek'], ['FANCY', 'İstemek'], ['FEEL LIKE', 'Canı İstemek'], ['CANT HELP', 'Kendini Alamamak'], ['RISK', 'Riske Atmak'], ['DELAY', 'Ertelemek'], ['POSTPONE', 'Ertelemek'], ['CONSIDER', 'Düşünmek'], ['RESIST', 'Direnç Göstermek'], ['DISLIKE', 'Sevmemek'], ['ESCAPE', 'Kaçmak'], ['RECALL', 'Hatırlamak'], ['MENTION', 'Bahsetmek'], ['DREAD', 'Korkmak'], ['INVOLVE', 'Kapsamak'], ['APPRECIATE', 'Takdir Etmek'], ['QUIT', 'Bırakmak'], ['REPORT', 'Rapor Etmek'], ['DISCUSS', 'Tartışmak'], ['ANTICIPATE', 'Ummak'], ['COMPLETE', 'Tamamlamak'], ['ENDURE', 'Katlanmak'], ['CAN\'T STAND', 'Tahammül Edememek'], ['RECOLLECT', 'Hatırlamak'], ['CEASE', 'Durdurmak'], ['TOLERATE', 'Tahammül Etmek']];
+        const database = [
+            ['AVOID', 'Kaçınmak', 'Leonardo DiCaprio'], ['ENJOY', 'Keyif Almak', 'Brad Pitt'], ['KEEP', 'Devam Etmek', 'Samuel L. Jackson'],
+            ['SUGGEST', 'Önermek', 'Morgan Freeman'], ['STOP', 'Bırakmak', 'Robert Downey Jr'], ['FINISH', 'Bitirmek', 'Al Pacino'],
+            ['IMAGINE', 'Hayal Etmek', 'Johnny Depp'], ['MIND', 'İtiraz Etmek', 'Scarlett Johansson'], ['MISS', 'Özlemek', 'Tom Cruise'],
+            ['ADMIT', 'İtiraf Etmek', 'Anthony Hopkins'], ['DENY', 'İnkar Etmek', 'Tom Hardy'], ['PRACTICE', 'Pratik Yapmak', 'Arnold Schwarzenegger'],
+            ['WORTH', 'Değmek', 'Keanu Reeves'], ['GIVE UP', 'Vazgeçmek', 'Denzel Washington'], ['FANCY', 'İstemek', 'Emma Watson'],
+            ['FEEL LIKE', 'Canı İstemek', 'Ryan Gosling'], ['CANT HELP', 'Kendini Alamamak', 'Jim Carrey'], ['RISK', 'Riske Atmak', 'Jason Statham'],
+            ['DELAY', 'Ertelemek', 'Benedict Cumberbatch'], ['POSTPONE', 'Ertelemek', 'Matthew McConaughey'], ['CONSIDER', 'Düşünmek', 'Christian Bale'],
+            ['RESIST', 'Direnç Göstermek', 'Harrison Ford'], ['DISLIKE', 'Sevmemek', 'Meryl Streep'], ['ESCAPE', 'Kaçmak', 'Sylvester Stallone'],
+            ['RECALL', 'Hatırlamak', 'Hugh Jackman'], ['MENTION', 'Bahsetmek', 'Will Smith'], ['DREAD', 'Korkmak', 'Jack Nicholson'],
+            ['INVOLVE', 'Kapsamak', 'Tom Hanks'], ['APPRECIATE', 'Takdir Etmek', 'Anne Hathaway'], ['QUIT', 'Bırakmak', 'Daniel Craig'],
+            ['REPORT', 'Rapor Etmek', 'Jake Gyllenhaal'], ['DISCUSS', 'Tartışmak', 'Natalie Portman'], ['ANTICIPATE', 'Ummak', 'Mark Ruffalo'],
+            ['COMPLETE', 'Tamamlamak', 'Vin Diesel'], ['ENDURE', 'Katlanmak', 'Russell Crowe'], ['CAN\'T STAND', 'Tahammül Edememek', 'Samuel L. Jackson'],
+            ['RECOLLECT', 'Hatırlamak', 'Nicole Kidman'], ['CEASE', 'Durdurmak', 'Liam Neeson'], ['TOLERATE', 'Tahammül Etmek', 'Jared Leto'], ['DELAY', 'Geciktirmek', 'Chris Pratt']
+        ];
 
         const list = document.getElementById('verbList');
-        verbs.forEach((v, index) => {
+        database.forEach((v, index) => {
             const div = document.createElement('div');
             div.className = 'verb-card';
             div.style.animationDelay = (index * 0.03) + 's';
@@ -138,8 +89,13 @@
                 
                 document.getElementById('focus-verb').innerText = v[0];
                 document.getElementById('focus-tr').innerText = "(" + v[1] + ")";
-                document.getElementById('btn-container').style.display = 'block';
-                document.getElementById('go-btn').onclick = () => window.open("https://www.playphrase.me/#/search?q=" + v[0].toLowerCase(), "_blank");
+                document.getElementById('assigned-actor').innerText = "AKTOR: " + v[2];
+                document.getElementById('action-area').style.display = 'block';
+                
+                document.getElementById('go-btn').onclick = () => {
+                    const query = v[2].toLowerCase() + " " + v[0].toLowerCase();
+                    window.open("https://www.playphrase.me/#/search?q=" + encodeURIComponent(query), "_blank");
+                };
             };
             list.appendChild(div);
         });
